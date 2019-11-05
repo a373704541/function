@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>文件上传</title>
+    <script src="js/jquery-2.1.1.min.js"></script>
+    <script src="./js/uploadFile.js"></script>
+    <style>
+        
+    </style>
+</head>
+<body>
+    <div class="a"></div>
+    <input type="file" id="upload">
+    <button class="uploadFile">上传</button>
+    <div class="draw_content"></div>
+</body> 
+</html>
+<script>
+    var upload = new UploadFile({
+        url:'http://106.12.56.172/admin.php/api/api/upload',
+        data:{
+            skuId:10085,
+            mapStr:JSON.stringify({
+                type:'2'
+            }),
+        },   
+        el:'#upload',
+        // suffix:['jpg'],/* 允许的图片类型 */
+        maxFile:'0', /* 文件最大上传数 */
+        size:1,
+        // specs:['800*800','342*325'],
+        drag:{
+            el:'.draw_content', /* 图片显示容器 */
+            text:'拖拽文件到此处上传',
+            width:800,
+            height:400,
+            enterLineColor:'red',
+        },
+        dragChildEl:{ /* 图片生成的样式 */
+            width:'150',
+            margin:'10px'
+        },
+        isRepeat:true, /* 验证重复图片 */
+        successText:'上传成功', /* 页面上传成功文字状态 */
+        errorText:'上传失败', /* 页面上传失败文字状态 */
+    })
+    $('.uploadFile').click(function (){
+        upload.handleUpload(function(res){
+            //上传结果回调
+            console.log('关闭页面')
+        })
+    })
+</script>
