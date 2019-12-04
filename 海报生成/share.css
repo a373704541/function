@@ -1,0 +1,58 @@
+.share {
+  margin: 300px auto;
+  padding: 20px;
+  border: 1px solid #000;
+  text-align: center;
+  width: 3rem;
+  font-size: 0.4rem;
+}
+.cover {
+  position: fixed;
+  top: 0%;
+  bottom: 0%;
+  left: 0%;
+  right: 0%;
+  background-color: rgba(0, 0, 0, 0.7);
+  display: none;
+}
+.poster {
+  display: none;
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  margin-left: -2.465rem;
+  margin-top: -3.98rem;
+  width: 4.93rem;
+  height: 7.96rem;
+  background-color: #fff;
+}
+.poster .poster_contain {
+  background-image: url('share.png');
+  width: 100%;
+  height: 100%;
+  background-size: 100% 100%;
+  position: relative;
+}
+.poster .poster_contain .poster_code {
+  position: absolute;
+  left: 50%;
+  transform: translateX(-50%);
+  top: 3.5rem;
+}
+.poster .poster_contain_clone {
+  position: absolute;
+  width: 100%;
+  top: 0px;
+  bottom: 0px;
+}
+.poster .poster_contain_clone img {
+  width: 100%;
+  height: 100%;
+}
+.poster .download {
+  position: absolute;
+  bottom: -10%;
+  color: #fff;
+  left: 50%;
+  transform: translateX(-50%);
+}

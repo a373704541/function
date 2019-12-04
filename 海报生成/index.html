@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <script src="http://libs.baidu.com/jquery/2.0.0/jquery.min.js"></script>
+    <script src="./rem.js"></script>
+    <script src="./qrcode.js"></script>
+    <script src="./html2Canvas.js"></script>
+    <link rel="stylesheet" href="./index.css">
+    <link rel="stylesheet" href="./share.css">
+    <title>Document</title>
+</head>
+
+<body>
+    <div onclick="onShare()" class="share">
+        分享
+    </div>
+    <div onclick="coverBtn()" class="cover"></div>
+    <div class="poster">
+        <div class="poster_contain">
+            <div class="poster_code"></div>
+        </div>
+        <div class="poster_contain_clone">
+            <img src="" alt="">
+        </div>
+
+        <a class="download" onclick="onDownload(this)" href="javascript:;">下载</a>
+    </div>
+</body>
+
+</html>
+<script>
+    function onShare() {
+        $('.poster').show()
+        $('.cover').show()
+        coverImg()
+    }
+
+    function coverBtn() {
+        $('.poster').hide()
+        $('.cover').hide()
+    }
+    // 生成二维码
+    var qrcode = new QRCode(document.querySelector('.poster_code'), {
+        text: 'http://www.baidu.com',
+        width: 100,
+        height: 100,
+        correctLevel: QRCode.CorrectLevel.H,
+    });
+    // 图片
+    function coverImg() {
+        var width = $('.poster').get(0).offsetWidth; // dom 宽
+        var height = $('.poster').get(0).offsetHeight; // dom 高
+        var scale = 2;
+        // 生成海报
+        if( $('.poster_contain_clone img').attr('src').length<=0){
+            html2canvas(document.querySelector(".poster_contain"), {
+            dpi: window.devicePixelRatio * 2,
+            scale: scale,
+            width: width,
+            heigth: height,
+            useCORS: true
+            }).then(canvas => {
+                var url = canvas.toDataURL(); //图片地址
+                $('.poster_contain_clone img').attr('src', url);
+            });
+        }
+    }
+    // 下载图片
+    function onDownload(that) {
+        $(that).get(0).href = $('.poster_contain_clone img').attr('src')
+        $(that).get(0).download =  'img' + new Date().getTime()
+    }
+</script>

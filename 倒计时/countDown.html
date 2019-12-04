@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <script src="http://libs.baidu.com/jquery/2.0.0/jquery.min.js"></script>
+    <link rel="stylesheet" href="./index.css">
+    <title>倒计时</title>
+    <style>
+        .contain {
+            position: absolute;
+            left: 50%;
+            top: 50%;
+            transform: translate(-50%, -50%);
+            width: 600px;
+            height: 300px;
+            border: 1px solid #000;
+            overflow: hidden;
+        }
+
+        .contain ul {
+            margin: 100px auto 100px;
+            background-color: #000;
+            width: 60%;
+            text-align: center;
+        }
+
+        .contain ul li {
+            font-size: 40px;
+            color: #fff;
+            display: inline-block;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="contain">
+        <ul class="clearfix">
+            <li class="day">01</li>
+            <li>:</li>
+            <li class="hour">22</li>
+            <li>:</li>
+            <li class="branch">02</li>
+            <li>:</li>
+            <li class="second">33</li>
+        </ul>
+    </div>
+</body>
+
+</html>
+
+<script src="./countDown.js"></script>
+<script>
+    var current = new Date()
+    var endtime = '2019/11/15 00:00:00'
+    endtime = new Date(endtime)
+    var countDown = new CountDown(
+        {
+            startTime:current,
+            endTime:endtime,
+            mode:"时分秒"
+        }
+    )
+    console.log(countDown)
+    // console.log(countDown.getTime())
+</script>
